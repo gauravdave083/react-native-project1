@@ -1,9 +1,24 @@
-import {View, Text} from 'react-native';
+import { Component } from "react";
+import {View, Text, SafeAreaView, Button} from 'react-native';
 
-export default function HomeScreen() {
-     return (
-          <View>
-               <Text style={{ fontSize: 30 }}> Screen </Text>
-          </View>     
-     );
+class Counter extends Component {
+     state = {
+          count: 0,
+     };
+
+     incrementCount = () => {
+          let updateCount = this.state.count + 1;
+          this.setState({count: updateCount});
+     }
+     
+     render(){
+          return (
+               <View>
+                    <Text>Count : {this.state.count}</Text>
+                    <Button title= "Increment" onPress={this.incrementCount} />
+               </View>
+          )
+     }
 }
+
+export default Counter;
