@@ -1,24 +1,13 @@
-import { Component } from "react";
-import {View, Text, SafeAreaView, Button} from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { useRouter } from 'expo-router';
 
-class Counter extends Component {
-     state = {
-          count: 0,
-     };
-
-     incrementCount = () => {
-          let updateCount = this.state.count + 1;
-          this.setState({count: updateCount});
-     }
-     
-     render(){
-          return (
-               <View>
-                    <Text>Count : {this.state.count}</Text>
-                    <Button title= "Increment" onPress={this.incrementCount} />
-               </View>
-          )
-     }
+export default function HomeScreen() {
+  const router = useRouter();
+  
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Welcome to the Restaurant App</Text>
+      <Button title="Add Restaurant" onPress={() => router.push('/restaurant/form')} />
+    </View>
+  );
 }
-
-export default Counter;
