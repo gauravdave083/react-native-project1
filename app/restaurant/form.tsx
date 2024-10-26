@@ -1,9 +1,13 @@
-import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Formik } from 'formik';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import   
+ { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useRouter } from 'expo-router';
 
 export default function RestaurantFormScreen() {
+  const router = useRouter();
+
   const initialValues = {
     name: '',
     owner: '',
@@ -26,8 +30,23 @@ export default function RestaurantFormScreen() {
     email: Yup.string().email('Invalid email').required('Email is required')
   });
 
-  const handleSubmit = (values) => {
-    console.log(values); // You can handle the submission here
+  const handleSubmit = async (values) => {
+    try {
+      // Send data to API or handle locally
+      // ... API call logic here
+
+      // Successful submission, show notification and redirect
+      Alert.alert('Success', 'Restaurant Onboarded Successfully!', [
+        {
+          text: 'OK',
+          onPress: () => router.push('/'),
+        },
+      ]);
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle error, e.g., show error message to the user
+      Alert.alert('Error', 'An error occurred. Please try again.');
+    }
   };
 
   return (
